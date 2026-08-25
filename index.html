@@ -45,16 +45,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .header .sub {
-            font-size: 14px;
-            color: #8b949e;
-            background: #161b22;
-            padding: 6px 16px;
-            border-radius: 20px;
-            border: 1px solid #30363d;
-        }
-
-        /* === Сетка игроков === */
         .players-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -166,7 +156,6 @@
             font-size: 14px;
         }
 
-        /* === Кнопки === */
         .actions {
             display: flex;
             flex-wrap: wrap;
@@ -211,22 +200,6 @@
             background: #30363d;
         }
 
-        .btn-danger {
-            background: #da3633;
-            color: #fff;
-        }
-
-        .btn-danger:hover {
-            background: #f85149;
-        }
-
-        .actions .hint {
-            font-size: 13px;
-            color: #8b949e;
-            margin-left: auto;
-        }
-
-        /* === Результаты === */
         .results {
             background: #161b22;
             border: 1px solid #30363d;
@@ -266,7 +239,7 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 12px 20px;
+            gap: 6px 16px;
             padding: 12px 16px;
             background: #0d1117;
             border-radius: 10px;
@@ -290,18 +263,17 @@
             color: #f0e6d0;
         }
 
+        .pot-item .pot-size-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
         .pot-item .pot-size {
             font-size: 20px;
             font-weight: 700;
             color: #f7c948;
-            min-width: 70px;
-        }
-
-        .pot-item .pot-size .currency {
-            font-size: 14px;
-            font-weight: 400;
-            color: #8b949e;
-            margin-left: 2px;
         }
 
         .pot-item .pot-eligible {
@@ -350,10 +322,6 @@
             margin-left: auto;
         }
 
-        .pot-item .pot-return strong {
-            color: #e6edf3;
-        }
-
         .empty-state {
             text-align: center;
             padding: 32px 16px;
@@ -365,6 +333,7 @@
             margin-bottom: 12px;
             opacity: 0.5;
         }
+
         .empty-state p {
             font-size: 15px;
         }
@@ -372,16 +341,104 @@
         .fold-note {
             font-size: 13px;
             color: #8b949e;
-            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        /* === Справка (спойлер) === */
+        .help-section {
+            margin-top: 28px;
+            border-top: 1px solid #30363d;
+            padding-top: 20px;
+        }
+
+        .help-toggle {
+            background: none;
+            border: none;
+            color: #8b949e;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: background 0.2s, color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+        }
+
+        .help-toggle:hover {
+            background: #21262d;
+            color: #c9d1d9;
+        }
+
+        .help-toggle .arrow {
+            display: inline-block;
+            transition: transform 0.25s ease;
+            font-size: 12px;
+        }
+
+        .help-toggle .arrow.open {
+            transform: rotate(90deg);
+        }
+
+        .help-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+            opacity: 0;
+            padding: 0 4px;
+        }
+
+        .help-content.open {
+            max-height: 2000px;
+            opacity: 1;
+            padding: 16px 4px 4px;
+        }
+
+        .help-content .help-inner {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 18px 22px;
+            color: #c9d1d9;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .help-content .help-inner strong {
+            color: #f0e6d0;
+        }
+
+        .help-content .help-inner ul {
+            margin: 8px 0 4px 20px;
+            padding: 0;
+        }
+
+        .help-content .help-inner li {
+            margin-bottom: 4px;
+        }
+
+        .help-content .help-inner .example-block {
+            background: #0d1117;
+            border-radius: 8px;
+            padding: 10px 16px;
+            margin: 8px 0 4px;
+            font-size: 13px;
+            color: #8b949e;
+            border-left: 3px solid #f0883e;
+        }
+
+        .help-content .help-inner .example-block code {
+            color: #f0e6d0;
+            background: #1c1f26;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
         }
 
         @media (max-width: 700px) {
             .header h1 {
                 font-size: 20px;
-            }
-            .header .sub {
-                font-size: 12px;
-                padding: 4px 12px;
             }
             .players-grid {
                 grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -409,12 +466,19 @@
             .pot-item .pot-return {
                 margin-left: 0;
             }
-            .actions .hint {
-                display: none;
-            }
             .btn {
                 padding: 8px 18px;
                 font-size: 14px;
+            }
+            .help-content .help-inner {
+                padding: 14px 16px;
+                font-size: 13px;
+            }
+            .pot-item .pot-size-wrapper {
+                flex-wrap: wrap;
+            }
+            .fold-note {
+                white-space: normal;
             }
         }
 
@@ -439,7 +503,6 @@
     <div class="app">
         <div class="header">
             <h1>♠ Калькулятор банков</h1>
-            <span class="sub">All‑In · Fold · Side Pots</span>
         </div>
 
         <div class="players-grid" id="playersGrid"></div>
@@ -448,7 +511,6 @@
             <button class="btn btn-primary" id="calcBtn">🧮 Рассчитать</button>
             <button class="btn btn-secondary" id="clearBtn">✕ Очистить</button>
             <button class="btn btn-secondary" id="fillDemoBtn">📋 Пример</button>
-            <span class="hint">All‑In / Fold (ставка < макс.)</span>
         </div>
 
         <div class="results" id="results">
@@ -463,11 +525,44 @@
                 </div>
             </div>
         </div>
+
+        <!-- ===== СПРАВКА (СПОЙЛЕР) ===== -->
+        <div class="help-section">
+            <button class="help-toggle" id="helpToggle">
+                <span>📖 Как пользоваться</span>
+                <span class="arrow" id="helpArrow">▶</span>
+            </button>
+            <div class="help-content" id="helpContent">
+                <div class="help-inner">
+                    <p><strong>Калькулятор банков в покере</strong> помогает распределить фишки между игроками при наличии All‑in и Fold.</p>
+                    <ul>
+                        <li><strong>Ставка</strong> — введите сумму, которую поставил игрок.</li>
+                        <li><strong>All‑in</strong> — отметьте игроков, которые пошли ва-банк. Такие игроки не могут участвовать в дальнейших торгах, но претендуют на уже сформированные банки.</li>
+                        <li><strong>Fold</strong> — определяется автоматически: если игрок поставил меньше максимальной ставки и не в All‑in, он считается сбросившимся. Его фишки уходят в банк, но сам он на банк не претендует.</li>
+                    </ul>
+                    <p><strong>Как интерпретировать результаты:</strong></p>
+                    <ul>
+                        <li><strong>Главный банк</strong> (⭐) — формируется из ставок всех игроков, кто участвовал в раздаче. Претендуют все активные игроки.</li>
+                        <li><strong>Сайд-поты</strong> (🔄) — дополнительные банки между игроками, которые поставили больше минимальной ставки.</li>
+                        <li><strong>Возврат</strong> (↩️) — если в банке остался только один претендент, банк возвращается этому игроку.</li>
+                        <li><strong>🔥</strong> — отмечает первого претендента в списке, который находится в All‑in. Помогает быстро понять, рядом с кем поставить банк.</li>
+                    </ul>
+                    <div class="example-block">
+                        <strong>Пример:</strong><br />
+                        Игрок 1: 100 (All‑in) · Игрок 2: 200 · Игрок 3: 300 (All‑in) · Игрок 4: 500<br />
+                        <em>Результат:</em> Главный банк = 400 (претендуют 1, 2, 3, 4) · Сайд-пот #1 = 300 (претендуют 2, 3, 4) · Сайд-пот #2 = 400 (претендуют 3, 4) · Возврат игроку 4 = 100
+                    </div>
+                    <p style="margin-top: 8px; font-size: 13px; color: #8b949e;">
+                        🔹 Нажмите <kbd>Enter</kbd> в любом поле ввода, чтобы быстро выполнить расчёт.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
         // ============================================================
-        // 1. СОЗДАНИЕ КАРТОЧЕК (без текстового статуса)
+        // 1. СОЗДАНИЕ КАРТОЧЕК
         // ============================================================
         const PLAYER_COUNT = 10;
         const players = [];
@@ -484,7 +579,7 @@
 
             const nameSpan = document.createElement('span');
             nameSpan.className = 'player-number';
-            nameSpan.textContent = `Игрок ${i}`;
+            nameSpan.textContent = i;
 
             const toggleLabel = document.createElement('label');
             toggleLabel.className = 'allin-toggle';
@@ -523,18 +618,15 @@
                 checkbox: checkbox,
             });
 
-            // При изменении чекбокса – обновляем класс all-in
             checkbox.addEventListener('change', () => {
                 card.classList.toggle('all-in', checkbox.checked);
                 if (checkbox.checked) card.classList.remove('folded');
             });
 
-            // При вводе – снимаем folded, он пересчитается при расчете
             input.addEventListener('input', () => {
                 card.classList.remove('folded');
             });
 
-            // Клик для фокуса
             card.addEventListener('click', (e) => {
                 if (!e.target.closest('.allin-toggle') && e.target !== input) {
                     input.focus();
@@ -543,10 +635,9 @@
         }
 
         // ============================================================
-        // 2. РАСЧЁТ БАНКОВ (с учётом Fold)
+        // 2. РАСЧЁТ БАНКОВ
         // ============================================================
         function calculatePots(playerData) {
-            // playerData: [{ index, bet, allIn }]
             const maxBet = Math.max(...playerData.map(p => p.bet), 0);
 
             const active = [];
@@ -554,7 +645,6 @@
 
             playerData.forEach(p => {
                 if (p.bet === 0) return;
-                // Активные: All‑in или те, кто не All‑in, но поставил максимальную ставку (уравняли)
                 if (p.allIn || (p.bet === maxBet && !p.allIn)) {
                     active.push({ index: p.index, remaining: p.bet });
                 } else {
@@ -562,7 +652,6 @@
                 }
             });
 
-            // Если нет активных, все ставки возвращаются
             if (active.length === 0) {
                 const returns = playerData.filter(p => p.bet > 0).map(p => ({
                     playerIndex: p.index,
@@ -577,7 +666,6 @@
             while (active.some(p => p.remaining > 0)) {
                 const minActive = Math.min(...active.filter(p => p.remaining > 0).map(p => p.remaining));
 
-                // Взносы фолдеров в этот банк
                 let foldedContribution = 0;
                 folded.forEach(f => {
                     if (f.remaining > 0) {
@@ -599,11 +687,9 @@
                     foldedContribution: foldedContribution,
                 });
 
-                // Уменьшаем остатки активных
                 active.forEach(p => {
                     p.remaining -= minActive;
                 });
-                // Удаляем тех, у кого остаток 0
                 for (let i = active.length - 1; i >= 0; i--) {
                     if (active[i].remaining === 0) {
                         active.splice(i, 1);
@@ -613,7 +699,6 @@
                 potIndex++;
             }
 
-            // Возвраты (избыток у активных, обычно один игрок)
             const returns = active.filter(p => p.remaining > 0).map(p => ({
                 playerIndex: p.index,
                 amount: p.remaining
@@ -623,31 +708,28 @@
         }
 
         // ============================================================
-        // 3. ОТОБРАЖЕНИЕ РЕЗУЛЬТАТОВ (банки с одним претендентом → возврат)
+        // 3. ОТОБРАЖЕНИЕ РЕЗУЛЬТАТОВ
         // ============================================================
         function renderResults(pots, returns) {
             const container = document.getElementById('potsContainer');
             const badge = document.getElementById('potCountBadge');
 
-            // Собираем все возвраты: исходные + банки с одним претендентом
             const allReturns = [...returns];
             const validPots = [];
 
             pots.forEach(pot => {
                 if (pot.eligible.length === 1) {
-                    // Банк с одним претендентом → возврат этому игроку
                     const playerIdx = pot.eligible[0];
                     allReturns.push({
                         playerIndex: playerIdx,
                         amount: pot.size,
-                        note: pot.foldedContribution > 0 ? ' (включая фишки сбросившихся)' : ''
+                        note: pot.foldedContribution > 0 ? ` (включая ${pot.foldedContribution} от сбросивших)` : ''
                     });
                 } else {
                     validPots.push(pot);
                 }
             });
 
-            // Если нет ни банков, ни возвратов
             if (validPots.length === 0 && allReturns.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state">
@@ -663,30 +745,32 @@
 
             let html = '<div class="pots-container">';
 
-            // Вывод банков
             validPots.forEach((pot, idx) => {
                 const cls = pot.isMain ? 'main-pot' : 'side-pot';
                 const label = pot.isMain ? '⭐ Главный банк' : `🔄 Сайд-пот #${idx}`;
 
-                const chips = pot.eligible.map(idx => {
-                    const p = players.find(p => p.index === idx);
+                const chips = pot.eligible.map((playerIdx, position) => {
+                    const p = players.find(p => p.index === playerIdx);
                     const isAllIn = p ? p.checkbox.checked : false;
+                    const showFire = position === 0 && isAllIn;
                     return `<span class="player-chip ${isAllIn ? 'allin-chip' : ''}">
-                                ${isAllIn ? '<span class="chip-icon">🔥</span>' : ''}
-                                Игрок ${idx}
+                                ${showFire ? '<span class="chip-icon">🔥</span>' : ''}
+                                ${playerIdx}
                             </span>`;
                 }).join('');
 
                 let foldInfo = '';
                 if (pot.foldedContribution > 0) {
-                    foldInfo = `<span class="fold-note">(включает ${pot.foldedContribution} фишек от сбросившихся)</span>`;
+                    foldInfo = `<span class="fold-note">(включая ${pot.foldedContribution} от сбросивших)</span>`;
                 }
 
                 html += `
                     <div class="pot-item ${cls}">
                         <span class="pot-name">${label}</span>
-                        <span class="pot-size">${pot.size} <span class="currency">фишек</span></span>
-                        ${foldInfo}
+                        <span class="pot-size-wrapper">
+                            <span class="pot-size">${pot.size}</span>
+                            ${foldInfo}
+                        </span>
                         <div class="pot-eligible">
                             <span class="label">🏆 претендуют:</span>
                             ${chips}
@@ -695,17 +779,18 @@
                 `;
             });
 
-            // Вывод возвратов (включая преобразованные банки с одним претендентом)
             allReturns.forEach(ret => {
                 html += `
                     <div class="pot-item" style="border-left-color: #58a6ff88; background: #0d1117;">
                         <span class="pot-name" style="color: #8b949e;">↩️ Возврат</span>
-                        <span class="pot-size" style="color: #8b949e;">${ret.amount} <span class="currency">фишек</span></span>
+                        <span class="pot-size-wrapper">
+                            <span class="pot-size" style="color: #8b949e;">${ret.amount}</span>
+                        </span>
                         <div class="pot-eligible">
                             <span class="label">игроку:</span>
-                            <span class="player-chip">Игрок ${ret.playerIndex}</span>
+                            <span class="player-chip">${ret.playerIndex}</span>
                         </div>
-                        <div class="pot-return">${ret.note || 'избыток фишек возвращается'}</div>
+                        <div class="pot-return">${ret.note || ''}</div>
                     </div>
                 `;
             });
@@ -718,12 +803,9 @@
         // 4. ОСНОВНАЯ ФУНКЦИЯ
         // ============================================================
         function performCalculation() {
-            // Сначала обновим визуальное состояние folded/all-in
             const data = players.map(p => {
                 const bet = parseInt(p.input.value, 10) || 0;
                 const allIn = p.checkbox.checked;
-                // Определяем, является ли игрок фолдером (ставка > 0, не all-in, ставка < максимума)
-                // Для этого нужно знать максимум, но мы не знаем его пока. Сделаем после сбора данных.
                 return { index: p.index, bet, allIn, card: p.card };
             });
 
@@ -738,12 +820,10 @@
                     d.card.classList.add('folded');
                     d.card.classList.remove('all-in');
                 } else {
-                    // ставка равна максимуму, но не all-in – активный, не фолдер
                     d.card.classList.remove('folded', 'all-in');
                 }
             });
 
-            // Теперь расчет
             const playerData = data.map(d => ({
                 index: d.index,
                 bet: d.bet,
@@ -803,7 +883,20 @@
         });
 
         // ============================================================
-        // 8. СТАРТ
+        // 8. СПОЙЛЕР (СПРАВКА)
+        // ============================================================
+        const helpToggle = document.getElementById('helpToggle');
+        const helpContent = document.getElementById('helpContent');
+        const helpArrow = document.getElementById('helpArrow');
+
+        helpToggle.addEventListener('click', () => {
+            const isOpen = helpContent.classList.toggle('open');
+            helpArrow.classList.toggle('open', isOpen);
+            helpToggle.setAttribute('aria-expanded', isOpen);
+        });
+
+        // ============================================================
+        // 9. СТАРТ
         // ============================================================
         clearAll();
         console.log('♠ Калькулятор с поддержкой Fold и автоматическим возвратом для одного претендента.');
